@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>can 確認テスト | 中学英語学習サイト</title>
-<meta name="description" content="中学英語 can の確認テスト">
+<title>can（助動詞） 確認テスト | 中学英語学習サイト</title>
+<meta name="description" content="中学英語 can（助動詞） の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:title" content="can（助動詞） 確認テスト | 中学英語学習サイト">
+<meta property="og:description" content="中学英語 can（助動詞） の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -13,8 +17,8 @@
     <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
     <nav class="header-nav">
       <a href="../index.html">ホーム</a>
-      <a href="../index.html#grammar">文法解説</a>
-      <a href="../index.html#practice">練習問題</a>
+      <a href="../index.html#grammar" class="active">文法解説</a>
+      <a href="../practice/index.html">練習問題</a>
       <a href="../test/index.html">確認テスト</a>
     </nav>
     <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
@@ -25,11 +29,10 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="../index.html">ホーム</a>
   <a href="../index.html#grammar">文法解説</a>
-  <a href="../index.html#practice">練習問題</a>
+  <a href="../practice/index.html">練習問題</a>
   <a href="../test/index.html">確認テスト</a>
-  <a href="../word/index.html">英単語帳</a>
-</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="index.html">確認テスト</a> > can</div>
-<div class="page-header"><h1>can 確認テスト</h1><p>制限時間5分。全10問。</p></div>
+</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="index.html">確認テスト</a> > can（助動詞）</div>
+<div class="page-header"><h1>can（助動詞） 確認テスト</h1><p>制限時間5分。全10問。</p></div>
 
 <div class="container">
   <div class="test-header">
@@ -62,13 +65,12 @@
     </div>
   </div>
 </div>
-<div class="ad-placeholder">広告スペース（AdSense設置予定）</div>
 <footer class="footer">
   <div class="footer-inner">
     <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
-    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a></div>
-    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a></div>
-    <div><h3>英単語</h3><a href="../word/index.html">単語帳</a></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a><a href="../practice/kankeisi.html">関係代名詞</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a><a href="../test/kankeisi_test.html">関係代名詞</a></div>
   </div>
   <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
 </footer>
@@ -78,11 +80,14 @@
 <script>
 const { createApp } = Vue;
 createApp({
-  data() { return {
-    selected: {}, finished: false,
-    timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
-    questions: [{"text": "I ___ swim.", "options": ["can", "am", "is"], "answer": "can", "explanation": "can + 動詞の原形"}, {"text": "She ___ speak French.", "options": ["can", "are", "have"], "answer": "can", "explanation": "can + 動詞の原形"}, {"text": "___ you help me?", "options": ["Can", "Are", "Do"], "answer": "Can", "explanation": "疑問文は Can を文頭に"}, {"text": "I ___ play the piano.", "options": ["can't", "am not", "don't"], "answer": "can't", "explanation": "否定文は can not (can't)"}, {"text": "He ___ run fast.", "options": ["can", "is", "has"], "answer": "can", "explanation": "can + 動詞の原形"}, {"text": "___ I use your pen?", "options": ["Can", "Am", "Do"], "answer": "Can", "explanation": "許可を求めるときも Can"}, {"text": "We ___ see the mountain.", "options": ["can", "are", "have"], "answer": "can", "explanation": "can + 動詞の原形"}, {"text": "She ___ cook well.", "options": ["can", "is", "has"], "answer": "can", "explanation": "can + 動詞の原形"}, {"text": "___ he speak Japanese?", "options": ["Can", "Is", "Does"], "answer": "Can", "explanation": "疑問文は Can を文頭に"}, {"text": "Yes, I ___.", "options": ["can", "am", "do"], "answer": "can", "explanation": "Can の疑問文には can で答える"}]
-  }; },
+  data() {
+    return {
+      selected: {},
+      finished: false,
+      timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
+      questions: [{"text": "I ___ swim.", "options": ["can", "can to", "am can"], "answer": "can", "explanation": "can + 動詞の原形"}, {"text": "She ___ play the piano.", "options": ["can", "cans", "can to"], "answer": "can", "explanation": "3単現でも can の形は変わらない"}, {"text": "He ___ speak Japanese.", "options": ["can't", "don't can", "isn't can"], "answer": "can't", "explanation": "否定文は can + not（can't）"}, {"text": "___ you help me?", "options": ["Do", "Can", "Are"], "answer": "Can", "explanation": "疑問文は Can を文頭に置く"}, {"text": "Yes, I ___.", "options": ["am", "do", "can"], "answer": "can", "explanation": "Can you? → Yes, I can."}, {"text": "No, I ___.", "options": ["can't", "don't", "am not"], "answer": "can't", "explanation": "否定の答えは No, I can't."}, {"text": "We ___ run fast.", "options": ["can", "cans", "can to"], "answer": "can", "explanation": "We + can + run（原形）"}, {"text": "My sister ___ cook well.", "options": ["can", "cans", "is can"], "answer": "can", "explanation": "3単数でも can は不変"}, {"text": "I ___ play the guitar.", "options": ["not can", "don't can", "can't"], "answer": "can't", "explanation": "否定文は can't"}, {"text": "___ your father drive a car?", "options": ["Do", "Is", "Can"], "answer": "Can", "explanation": "疑問文は Can + 主語 + 動詞の原形"}]
+    };
+  },
   computed: {
     allAnswered() { return this.questions.every((_, i) => this.selected[i]); },
     score() { return this.questions.filter((q, i) => this.selected[i] === q.answer).length; }

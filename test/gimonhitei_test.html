@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>疑問文・否定文 確認テスト | 中学英語学習サイト</title>
-<meta name="description" content="中学英語 疑問文・否定文 の確認テスト">
+<meta name="description" content="中学英語 疑問文・否定文 の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:title" content="疑問文・否定文 確認テスト | 中学英語学習サイト">
+<meta property="og:description" content="中学英語 疑問文・否定文 の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -13,8 +17,8 @@
     <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
     <nav class="header-nav">
       <a href="../index.html">ホーム</a>
-      <a href="../index.html#grammar">文法解説</a>
-      <a href="../index.html#practice">練習問題</a>
+      <a href="../index.html#grammar" class="active">文法解説</a>
+      <a href="../practice/index.html">練習問題</a>
       <a href="../test/index.html">確認テスト</a>
     </nav>
     <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
@@ -25,9 +29,8 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="../index.html">ホーム</a>
   <a href="../index.html#grammar">文法解説</a>
-  <a href="../index.html#practice">練習問題</a>
+  <a href="../practice/index.html">練習問題</a>
   <a href="../test/index.html">確認テスト</a>
-  <a href="../word/index.html">英単語帳</a>
 </div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="index.html">確認テスト</a> > 疑問文・否定文</div>
 <div class="page-header"><h1>疑問文・否定文 確認テスト</h1><p>制限時間5分。全10問。</p></div>
 
@@ -62,13 +65,12 @@
     </div>
   </div>
 </div>
-<div class="ad-placeholder">広告スペース（AdSense設置予定）</div>
 <footer class="footer">
   <div class="footer-inner">
     <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
-    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a></div>
-    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a></div>
-    <div><h3>英単語</h3><a href="../word/index.html">単語帳</a></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a><a href="../practice/kankeisi.html">関係代名詞</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a><a href="../test/kankeisi_test.html">関係代名詞</a></div>
   </div>
   <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
 </footer>
@@ -78,11 +80,14 @@
 <script>
 const { createApp } = Vue;
 createApp({
-  data() { return {
-    selected: {}, finished: false,
-    timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
-    questions: [{"text": "Are you a student? に正しく答えなさい。", "options": ["Yes, I am.", "Yes, I do.", "Yes, I are."], "answer": "Yes, I am.", "explanation": "be動詞の疑問文には be動詞で答える"}, {"text": "Do you like cats? に正しく答えなさい。", "options": ["Yes, I like.", "Yes, I do.", "Yes, I am."], "answer": "Yes, I do.", "explanation": "一般動詞の疑問文には do で答える"}, {"text": "He ___ a teacher. (否定文に)", "options": ["is not", "does not", "do not"], "answer": "is not", "explanation": "be動詞の否定は be動詞+not"}, {"text": "I ___ like coffee.", "options": ["am not", "don't", "isn't"], "answer": "don't", "explanation": "一般動詞の否定は don't"}, {"text": "___ she a doctor?", "options": ["Do", "Is", "Are"], "answer": "Is", "explanation": "she のbe動詞疑問文は Is"}, {"text": "___ they play soccer?", "options": ["Do", "Does", "Are"], "answer": "Do", "explanation": "they の一般動詞疑問文は Do"}, {"text": "She ___ not a student.", "options": ["do", "does", "is"], "answer": "is", "explanation": "be動詞否定文"}, {"text": "We ___ eat meat.", "options": ["are not", "don't", "isn't"], "answer": "don't", "explanation": "一般動詞否定文は don't"}, {"text": "Is he kind? に正しく答えなさい。", "options": ["Yes, he is.", "Yes, he does.", "Yes, he do."], "answer": "Yes, he is.", "explanation": "be動詞の疑問文には be動詞で"}, {"text": "___ you speak English?", "options": ["Are", "Do", "Is"], "answer": "Do", "explanation": "一般動詞の疑問文は Do"}]
-  }; },
+  data() {
+    return {
+      selected: {},
+      finished: false,
+      timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
+      questions: [{"text": "___ you a student?", "options": ["Am", "Are", "Is"], "answer": "Are", "explanation": "you の疑問文は Are you"}, {"text": "She ___ not my sister.", "options": ["am", "are", "is"], "answer": "is", "explanation": "be動詞の否定文：She is not"}, {"text": "I ___ like coffee.", "options": ["don't", "doesn't", "am not"], "answer": "don't", "explanation": "一般動詞の否定は don't"}, {"text": "___ you like sushi?", "options": ["Do", "Does", "Are"], "answer": "Do", "explanation": "you の疑問文は Do you"}, {"text": "___ he play tennis?", "options": ["Do", "Does", "Is"], "answer": "Does", "explanation": "3単現の疑問文は Does he"}, {"text": "He ___ like fish.", "options": ["don't", "doesn't", "isn't"], "answer": "doesn't", "explanation": "3単現の否定文は doesn't"}, {"text": "___ they your friends?", "options": ["Am", "Are", "Is"], "answer": "Are", "explanation": "they の疑問文は Are they"}, {"text": "This ___ my book.", "options": ["am not", "are not", "is not"], "answer": "is not", "explanation": "This には is not"}, {"text": "We ___ play soccer on Sunday.", "options": ["don't", "doesn't", "aren't"], "answer": "don't", "explanation": "We には don't"}, {"text": "___ you from Japan?", "options": ["Do", "Are", "Is"], "answer": "Are", "explanation": "出身を尋ねるbe動詞の疑問文は Are you from"}]
+    };
+  },
   computed: {
     allAnswered() { return this.questions.every((_, i) => this.selected[i]); },
     score() { return this.questions.filter((q, i) => this.selected[i] === q.answer).length; }

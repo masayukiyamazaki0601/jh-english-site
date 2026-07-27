@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>命令文 確認テスト | 中学英語学習サイト</title>
-<meta name="description" content="中学英語 命令文 の確認テスト">
+<meta name="description" content="中学英語 命令文 の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:title" content="命令文 確認テスト | 中学英語学習サイト">
+<meta property="og:description" content="中学英語 命令文 の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -13,8 +17,8 @@
     <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
     <nav class="header-nav">
       <a href="../index.html">ホーム</a>
-      <a href="../index.html#grammar">文法解説</a>
-      <a href="../index.html#practice">練習問題</a>
+      <a href="../index.html#grammar" class="active">文法解説</a>
+      <a href="../practice/index.html">練習問題</a>
       <a href="../test/index.html">確認テスト</a>
     </nav>
     <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
@@ -25,9 +29,8 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="../index.html">ホーム</a>
   <a href="../index.html#grammar">文法解説</a>
-  <a href="../index.html#practice">練習問題</a>
+  <a href="../practice/index.html">練習問題</a>
   <a href="../test/index.html">確認テスト</a>
-  <a href="../word/index.html">英単語帳</a>
 </div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="index.html">確認テスト</a> > 命令文</div>
 <div class="page-header"><h1>命令文 確認テスト</h1><p>制限時間5分。全10問。</p></div>
 
@@ -62,13 +65,12 @@
     </div>
   </div>
 </div>
-<div class="ad-placeholder">広告スペース（AdSense設置予定）</div>
 <footer class="footer">
   <div class="footer-inner">
     <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
-    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a></div>
-    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a></div>
-    <div><h3>英単語</h3><a href="../word/index.html">単語帳</a></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a><a href="../practice/kankeisi.html">関係代名詞</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a><a href="../test/kankeisi_test.html">関係代名詞</a></div>
   </div>
   <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
 </footer>
@@ -78,11 +80,14 @@
 <script>
 const { createApp } = Vue;
 createApp({
-  data() { return {
-    selected: {}, finished: false,
-    timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
-    questions: [{"text": "「座りなさい」", "options": ["Sit down.", "Sitting down.", "Sat down."], "answer": "Sit down.", "explanation": "命令文は動詞の原形で始める"}, {"text": "「走ってはいけません」", "options": ["Don't run.", "Not run.", "No run."], "answer": "Don't run.", "explanation": "禁止文は Don't + 動詞の原形"}, {"text": "「本を開きなさい」", "options": ["Open your book.", "Opening your book.", "Opened your book."], "answer": "Open your book.", "explanation": "命令文は動詞の原形"}, {"text": "「遅れてはいけません」", "options": ["Don't be late.", "Not late.", "Don't late."], "answer": "Don't be late.", "explanation": "be動詞の命令文は Don't be"}, {"text": "「大きい声で読みなさい」", "options": ["Read aloud.", "Reads aloud.", "Reading aloud."], "answer": "Read aloud.", "explanation": "命令文は動詞の原形"}, {"text": "「教室で食べてはいけません」", "options": ["Don't eat in class.", "Not eat in class.", "Eat not in class."], "answer": "Don't eat in class.", "explanation": "禁止文は Don't + 動詞の原形"}, {"text": "「こっちに来なさい」", "options": ["Come here.", "Came here.", "Coming here."], "answer": "Come here.", "explanation": "命令文は動詞の原形"}, {"text": "「ドアを閉めなさい」", "options": ["Close the door.", "Closes the door.", "Closed the door."], "answer": "Close the door.", "explanation": "命令文は動詞の原形"}, {"text": "「立ってください」の丁寧な表現", "options": ["Stand up.", "Please stand up.", "Stood up."], "answer": "Please stand up.", "explanation": "Please を付けると丁寧になる"}, {"text": "「タバコを吸ってはいけません」", "options": ["Don't smoke.", "Not smoke.", "Smoke not."], "answer": "Don't smoke.", "explanation": "禁止文は Don't + 動詞の原形"}]
-  }; },
+  data() {
+    return {
+      selected: {},
+      finished: false,
+      timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
+      questions: [{"text": "___ down.", "options": ["Sit", "Sitting", "Sits"], "answer": "Sit", "explanation": "命令文は動詞の原形で始める"}, {"text": "___ your book.", "options": ["Open", "Opening", "Opens"], "answer": "Open", "explanation": "命令文は動詞の原形"}, {"text": "___ in class.", "options": ["Don't eat", "Doesn't eat", "Not eat"], "answer": "Don't eat", "explanation": "禁止文は Don't + 動詞の原形"}, {"text": "___ up.", "options": ["Stand", "Standing", "Stands"], "answer": "Stand", "explanation": "命令文は動詞の原形"}, {"text": "___ run in the hallway.", "options": ["Don't", "Doesn't", "Not"], "answer": "Don't", "explanation": "禁止文は Don't + 動詞の原形"}, {"text": "___ your name here.", "options": ["Write", "Writes", "Writing"], "answer": "Write", "explanation": "命令文は動詞の原形"}, {"text": "___ the window.", "options": ["Open", "Opening", "Opens"], "answer": "Open", "explanation": "命令文は動詞の原形"}, {"text": "___ be late.", "options": ["Don't", "Doesn't", "Not"], "answer": "Don't", "explanation": "be動詞の禁止文も Don't"}, {"text": "___ my hand.", "options": ["Hold", "Holding", "Holds"], "answer": "Hold", "explanation": "命令文は動詞の原形"}, {"text": "___ quiet.", "options": ["Be", "Being", "Is"], "answer": "Be", "explanation": "命令文 Be + 形容詞"}]
+    };
+  },
   computed: {
     allAnswered() { return this.questions.every((_, i) => this.selected[i]); },
     score() { return this.questions.filter((q, i) => this.selected[i] === q.answer).length; }

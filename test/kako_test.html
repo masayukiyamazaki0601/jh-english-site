@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>一般動詞の過去形 確認テスト | 中学英語学習サイト</title>
-<meta name="description" content="中学英語 一般動詞の過去形 の確認テスト">
+<meta name="description" content="中学英語 一般動詞の過去形 の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:title" content="一般動詞の過去形 確認テスト | 中学英語学習サイト">
+<meta property="og:description" content="中学英語 一般動詞の過去形 の確認テスト。制限時間5分、全10問。時間内に全問解答して実力をチェック。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -13,8 +17,8 @@
     <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
     <nav class="header-nav">
       <a href="../index.html">ホーム</a>
-      <a href="../index.html#grammar">文法解説</a>
-      <a href="../index.html#practice">練習問題</a>
+      <a href="../index.html#grammar" class="active">文法解説</a>
+      <a href="../practice/index.html">練習問題</a>
       <a href="../test/index.html">確認テスト</a>
     </nav>
     <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
@@ -25,9 +29,8 @@
 <div class="mobile-nav" id="mobileNav">
   <a href="../index.html">ホーム</a>
   <a href="../index.html#grammar">文法解説</a>
-  <a href="../index.html#practice">練習問題</a>
+  <a href="../practice/index.html">練習問題</a>
   <a href="../test/index.html">確認テスト</a>
-  <a href="../word/index.html">英単語帳</a>
 </div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="index.html">確認テスト</a> > 一般動詞の過去形</div>
 <div class="page-header"><h1>一般動詞の過去形 確認テスト</h1><p>制限時間5分。全10問。</p></div>
 
@@ -62,13 +65,12 @@
     </div>
   </div>
 </div>
-<div class="ad-placeholder">広告スペース（AdSense設置予定）</div>
 <footer class="footer">
   <div class="footer-inner">
     <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
-    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a></div>
-    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a></div>
-    <div><h3>英単語</h3><a href="../word/index.html">単語帳</a></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a><a href="../practice/kankeisi.html">関係代名詞</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a><a href="../test/kankeisi_test.html">関係代名詞</a></div>
   </div>
   <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
 </footer>
@@ -78,11 +80,14 @@
 <script>
 const { createApp } = Vue;
 createApp({
-  data() { return {
-    selected: {}, finished: false,
-    timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
-    questions: [{"text": "I ___ to the park yesterday.", "options": ["went", "go", "going"], "answer": "went", "explanation": "go の過去形は went"}, {"text": "She ___ breakfast at seven.", "options": ["eat", "ate", "eating"], "answer": "ate", "explanation": "eat の過去形は ate"}, {"text": "They ___ a movie last night.", "options": ["see", "saw", "seeing"], "answer": "saw", "explanation": "see の過去形は saw"}, {"text": "I ___ my homework yesterday.", "options": ["did", "do", "doing"], "answer": "did", "explanation": "do の過去形は did"}, {"text": "He ___ a good time at the party.", "options": ["have", "had", "having"], "answer": "had", "explanation": "have の過去形は had"}, {"text": "She ___ a cake for me.", "options": ["make", "made", "making"], "answer": "made", "explanation": "make の過去形は made"}, {"text": "We ___ to school by bus.", "options": ["go", "went", "going"], "answer": "went", "explanation": "go の過去形は went"}, {"text": "I ___ a letter to my friend.", "options": ["write", "wrote", "writing"], "answer": "wrote", "explanation": "write の過去形は wrote"}, {"text": "He ___ a new car.", "options": ["buy", "bought", "buying"], "answer": "bought", "explanation": "buy の過去形は bought"}, {"text": "She ___ the window.", "options": ["open", "opened", "opening"], "answer": "opened", "explanation": "規則動詞 open の過去形は opened"}]
-  }; },
+  data() {
+    return {
+      selected: {},
+      finished: false,
+      timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
+      questions: [{"text": "I ___ tennis yesterday.", "options": ["play", "played", "playing"], "answer": "played", "explanation": "play → played（規則動詞ed形）"}, {"text": "She ___ to the park last Sunday.", "options": ["go", "went", "goes"], "answer": "went", "explanation": "go → went（不規則変化）"}, {"text": "We ___ a movie last night.", "options": ["see", "saw", "seeing"], "answer": "saw", "explanation": "see → saw（不規則変化）"}, {"text": "He ___ breakfast at seven.", "options": ["eat", "ate", "eats"], "answer": "ate", "explanation": "eat → ate（不規則変化）"}, {"text": "They ___ their homework yesterday.", "options": ["do", "did", "does"], "answer": "did", "explanation": "do → did（不規則変化）"}, {"text": "I ___ TV last night.", "options": ["didn't watch", "didn't watched", "don't watch"], "answer": "didn't watch", "explanation": "否定文は didn't + 動詞の原形"}, {"text": "___ you go to school yesterday?", "options": ["Do", "Did", "Does"], "answer": "Did", "explanation": "過去の疑問文は Did + 主語 + 動詞の原形"}, {"text": "She ___ a good time at the party.", "options": ["have", "had", "has"], "answer": "had", "explanation": "have → had（不規則変化）"}, {"text": "He ___ his room yesterday.", "options": ["clean", "cleaned", "cleans"], "answer": "cleaned", "explanation": "clean → cleaned（規則動詞ed形）"}, {"text": "Where ___ you go yesterday?", "options": ["do", "did", "are"], "answer": "did", "explanation": "過去の疑問詞疑問文は did + 主語 + 動詞の原形"}]
+    };
+  },
   computed: {
     allAnswered() { return this.questions.every((_, i) => this.selected[i]); },
     score() { return this.questions.filter((q, i) => this.selected[i] === q.answer).length; }
