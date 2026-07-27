@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リスニング練習 | 中学英語学習サイト</title>
+<meta name="description" content="中学英語のリスニング練習。英文を聞いて意味を理解しよう。">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="../index.html">ホーム</a>
+      <a href="../index.html#grammar">文法解説</a>
+      <a href="../listening/index.html">リスニング</a>
+      <a href="../test/index.html">確認テスト</a>
+      <a href="../word/index.html">単語帳</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html">ホーム</a>
+  <a href="../index.html#grammar">文法解説</a>
+  <a href="../index.html#practice">練習問題</a>
+  <a href="../listening/index.html">リスニング練習</a>
+  <a href="../test/index.html">確認テスト</a>
+  <a href="../word/index.html">英単語帳</a>
+  <a href="../verb/index.html">不規則動詞一覧</a>
+  <a href="../exam/index.html">高校入試対策</a>
+  <a href="../writing/index.html">英作文練習</a>
+  <a href="../search.html">サイト内検索</a>
+  <a href="../sitemap.html">サイトマップ</a>
+</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > リスニング練習</div>
+<div class="page-header">
+  <h1>🎧 リスニング練習</h1>
+  <p>英文をクリックすると音声が流れます。スピード調整も可能。</p>
+</div>
+<div class="container">
+  <div style="text-align:center;margin-bottom:20px;">
+    <label style="font-weight:600;margin-right:8px;">スピード:</label>
+    <select id="rateSelect" style="padding:8px 16px;border-radius:8px;border:2px solid var(--gray-200);font-size:1rem;">
+      <option value="0.5">0.5倍</option>
+      <option value="0.75">0.75倍</option>
+      <option value="1" selected>等倍</option>
+      <option value="1.25">1.25倍</option>
+      <option value="1.5">1.5倍</option>
+    </select>
+  </div>
+  <div id="listenApp">
+    <div class="grammar-grid">
+      <div class="grammar-card" v-for="(item, i) in items" :key="i" @click="speak(item.en)" style="cursor:pointer;">
+        <h3>{{ item.en }}</h3>
+        <p v-if="item.show" style="color:var(--primary);font-weight:600;">{{ item.ja }}</p>
+        <p v-else style="color:var(--gray-400);">👆 クリックで発音 + タップで和訳表示</p>
+        <p style="color:var(--gray-500);font-size:0.8rem;margin-top:4px;">{{ item.category }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ad-placeholder">広告スペース（AdSense設置予定）</div><footer class="footer">
+  <div class="footer-inner">
+    <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。英文法・練習問題・確認テストで英語力を確実にアップ。</p></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a></div>
+    <div><h3>その他</h3><a href="../listening/index.html">リスニング</a><a href="../writing/index.html">英作文</a><a href="../word/index.html">単語帳</a><a href="../verb/index.html">不規則動詞</a><a href="../exam/index.html">入試対策</a><a href="../privacy.html">プライバシーポリシー</a><a href="../contact.html">お問い合わせ</a></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
+</footer>
+</body>
+</html>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      items: [
+        {en:"Good morning.", ja:"おはようございます。",category:"挨拶"},
+        {en:"How are you?", ja:"元気ですか？",category:"挨拶"},
+        {en:"I am fine, thank you.", ja:"はい、元気です。ありがとう。",category:"挨拶"},
+        {en:"What is your name?", ja:"あなたの名前は何ですか？",category:"質問"},
+        {en:"My name is Taro.", ja:"私の名前は太郎です。",category:"質問"},
+        {en:"Where are you from?", ja:"どこから来ましたか？",category:"質問"},
+        {en:"I am from Japan.", ja:"日本から来ました。",category:"質問"},
+        {en:"How old are you?", ja:"何歳ですか？",category:"質問"},
+        {en:"I am 12 years old.", ja:"12歳です。",category:"質問"},
+        {en:"What time is it?", ja:"今何時ですか？",category:"質問"},
+        {en:"It is eight o'clock.", ja:"8時です。",category:"質問"},
+        {en:"What day is it today?", ja:"今日は何曜日ですか？",category:"質問"},
+        {en:"It is Monday.", ja:"月曜日です。",category:"曜日"},
+        {en:"I like cats.", ja:"猫が好きです。",category:"好き嫌い"},
+        {en:"Do you like music?", ja:"音楽は好きですか？",category:"好き嫌い"},
+        {en:"Yes, I do.", ja:"はい、好きです。",category:"好き嫌い"},
+        {en:"I can swim.", ja:"泳げます。",category:"能力"},
+        {en:"Can you play the piano?", ja:"ピアノを弾けますか？",category:"能力"},
+        {en:"I have a dog.", ja:"犬を飼っています。",category:"所有"},
+        {en:"She is my friend.", ja:"彼女は私の友達です。",category:"紹介"},
+        {en:"This is a pen.", ja:"これはペンです。",category:"もの"},
+        {en:"There is a cat under the table.", ja:"テーブルの下に猫がいます。",category:"存在"},
+        {en:"I go to school by bus.", ja:"バスで学校に行きます。",category:"日常"},
+        {en:"I eat breakfast at seven.", ja:"7時に朝食を食べます。",category:"日常"},
+        {en:"She reads books every day.", ja:"彼女は毎日本を読みます。",category:"日常"},
+        {en:"He is taller than me.", ja:"彼は私より背が高いです。",category:"比較"},
+        {en:"I want to be a doctor.", ja:"医者になりたいです。",category:"将来"},
+        {en:"I have been to Kyoto.", ja:"京都に行ったことがあります。",category:"経験"},
+        {en:"If it rains, I will stay home.", ja:"雨が降れば、家にいます。",category:"条件"},
+        {en:"Thank you very much.", ja:"どうもありがとう。",category:"感謝"},
+      ].map(item => ({...item, show: false}))
+    };
+  },
+  methods: {
+    speak(text) {
+      const item = this.items.find(i => i.en === text);
+      if (item) item.show = !item.show;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      const rate = document.getElementById('rateSelect').value;
+      utterance.rate = parseFloat(rate);
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    }
+  }
+}).mount('#listenApp');
+</script>
+</body>
+</html>

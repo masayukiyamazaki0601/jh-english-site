@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英単語帳 | 中学英語学習サイト</title>
+<meta name="description" content="中学英語の英単語を学年別に学習。意味・例文付き。">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="../index.html">ホーム</a>
+      <a href="../index.html#grammar">文法解説</a>
+      <a href="../index.html#practice">練習問題</a>
+      <a href="../test/index.html">確認テスト</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html">ホーム</a>
+  <a href="../index.html#grammar">文法解説</a>
+  <a href="../index.html#practice">練習問題</a>
+  <a href="../test/index.html">確認テスト</a>
+  <a href="../word/index.html">英単語帳</a>
+</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > 英単語帳</div>
+<div class="page-header">
+  <h1>📖 英単語帳</h1>
+  <p>中学英語で習う単語を学年別にチェック。タップ/クリックで意味を確認できます。</p>
+</div>
+<div class="container">
+  <div class="grade-tabs" id="wordTabs">
+    <button class="grade-tab active" data-grade="g1" onclick="showGrade('g1')">中学1年</button>
+    <button class="grade-tab" data-grade="g2" onclick="showGrade('g2')">中学2年</button>
+    <button class="grade-tab" data-grade="g3" onclick="showGrade('g3')">中学3年</button>
+  </div>
+  <div id="wordApp">
+    <div class="grammar-grid">
+      <div class="grammar-card" v-for="w in currentWords" :key="w.en" @click="w.show = !w.show">
+        <h3>{{ w.en }}</h3>
+        <p v-if="w.show" style="color:var(--primary);font-weight:700;font-size:1.2rem;">{{ w.ja }}</p>
+        <p v-else style="color:var(--gray-400);">タップで意味を表示</p>
+        <p style="color:var(--gray-500);font-size:0.85rem;margin-top:8px;">{{ w.example }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ad-placeholder">広告スペース（AdSense設置予定）</div><footer class="footer">
+  <div class="footer-inner">
+    <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a></div>
+    <div><h3>英単語</h3><a href="../word/index.html">単語帳</a></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
+</footer>
+</body>
+</html>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const wordData = {"g1": {"grade": "中学1年", "words": [{"en": "apple", "ja": "りんご", "example": "I like apples."}, {"en": "book", "ja": "本", "example": "This is my book."}, {"en": "cat", "ja": "猫", "example": "I have a cat."}, {"en": "dog", "ja": "犬", "example": "The dog is cute."}, {"en": "eat", "ja": "食べる", "example": "I eat breakfast."}, {"en": "friend", "ja": "友達", "example": "She is my friend."}, {"en": "good", "ja": "良い", "example": "This is a good book."}, {"en": "happy", "ja": "幸せな", "example": "I am happy."}, {"en": "interesting", "ja": "面白い", "example": "This book is interesting."}, {"en": "Japanese", "ja": "日本語", "example": "I study Japanese."}, {"en": "kind", "ja": "親切な", "example": "He is kind."}, {"en": "like", "ja": "好き", "example": "I like music."}, {"en": "music", "ja": "音楽", "example": "I listen to music."}, {"en": "name", "ja": "名前", "example": "My name is Taro."}, {"en": "old", "ja": "古い", "example": "This is an old house."}, {"en": "play", "ja": "遊ぶ", "example": "I play tennis."}, {"en": "read", "ja": "読む", "example": "I read books."}, {"en": "school", "ja": "学校", "example": "I go to school."}, {"en": "student", "ja": "学生", "example": "I am a student."}, {"en": "teacher", "ja": "先生", "example": "She is a teacher."}, {"en": "today", "ja": "今日", "example": "It is sunny today."}, {"en": "under", "ja": "〜の下に", "example": "The cat is under the table."}, {"en": "water", "ja": "水", "example": "I drink water."}, {"en": "what", "ja": "何", "example": "What is this?"}, {"en": "where", "ja": "どこ", "example": "Where is the station?"}, {"en": "white", "ja": "白い", "example": "It is white."}, {"en": "year", "ja": "年", "example": "I am 12 years old."}, {"en": "young", "ja": "若い", "example": "She is young."}, {"en": "zoo", "ja": "動物園", "example": "Let's go to the zoo."}, {"en": "tennis", "ja": "テニス", "example": "I play tennis."}, {"en": "soccer", "ja": "サッカー", "example": "He plays soccer."}, {"en": "piano", "ja": "ピアノ", "example": "She plays the piano."}, {"en": "sister", "ja": "姉/妹", "example": "I have a sister."}, {"en": "brother", "ja": "兄/弟", "example": "My brother is tall."}, {"en": "mother", "ja": "母", "example": "My mother is kind."}]}, "g2": {"grade": "中学2年", "words": [{"en": "beautiful", "ja": "美しい", "example": "She is beautiful."}, {"en": "become", "ja": "〜になる", "example": "I want to become a doctor."}, {"en": "between", "ja": "〜の間に", "example": "The cat is between the boxes."}, {"en": "breakfast", "ja": "朝食", "example": "I eat breakfast at seven."}, {"en": "careful", "ja": "注意深い", "example": "Be careful."}, {"en": "dangerous", "ja": "危険な", "example": "This is dangerous."}, {"en": "delicious", "ja": "美味しい", "example": "This is delicious."}, {"en": "different", "ja": "異なる", "example": "We are different."}, {"en": "difficult", "ja": "難しい", "example": "This math is difficult."}, {"en": "enjoy", "ja": "楽しむ", "example": "I enjoy music."}, {"en": "everything", "ja": "すべて", "example": "Everything is OK."}, {"en": "exciting", "ja": "わくわくする", "example": "This game is exciting."}, {"en": "expensive", "ja": "高い", "example": "This bag is expensive."}, {"en": "foreign", "ja": "外国の", "example": "I like foreign countries."}, {"en": "important", "ja": "重要な", "example": "This is important."}, {"en": "language", "ja": "言語", "example": "English is a language."}, {"en": "library", "ja": "図書館", "example": "I go to the library."}, {"en": "mountain", "ja": "山", "example": "Mt.Fuji is a mountain."}, {"en": "necessary", "ja": "必要な", "example": "Water is necessary."}, {"en": "outside", "ja": "外", "example": "Let's play outside."}, {"en": "practice", "ja": "練習", "example": "Practice makes perfect."}, {"en": "problem", "ja": "問題", "example": "This is a hard problem."}, {"en": "remember", "ja": "覚える", "example": "Remember this word."}, {"en": "restaurant", "ja": "レストラン", "example": "Let's go to a restaurant."}, {"en": "sandwich", "ja": "サンドイッチ", "example": "I ate a sandwich."}, {"en": "should", "ja": "すべき", "example": "You should study."}, {"en": "stadium", "ja": "スタジアム", "example": "The game is at the stadium."}, {"en": "tomorrow", "ja": "明日", "example": "See you tomorrow."}, {"en": "university", "ja": "大学", "example": "I want to go to university."}, {"en": "weather", "ja": "天気", "example": "The weather is nice."}]}, "g3": {"grade": "中学3年", "words": [{"en": "achieve", "ja": "達成する", "example": "I achieved my goal."}, {"en": "actually", "ja": "実際に", "example": "Actually, it's true."}, {"en": "believe", "ja": "信じる", "example": "I believe you."}, {"en": "century", "ja": "世紀", "example": "21st century."}, {"en": "climate", "ja": "気候", "example": "The climate is warm."}, {"en": "communicate", "ja": "伝える", "example": "Let's communicate."}, {"en": "community", "ja": "地域社会", "example": "Our community is nice."}, {"en": "completely", "ja": "完全に", "example": "I completely agree."}, {"en": "conference", "ja": "会議", "example": "I have a conference."}, {"en": "consider", "ja": "考える", "example": "Consider this problem."}, {"en": "continue", "ja": "続ける", "example": "Continue your study."}, {"en": "contribute", "ja": "貢献する", "example": "I want to contribute."}, {"en": "culture", "ja": "文化", "example": "Japanese culture."}, {"en": "decision", "ja": "決断", "example": "Make a decision."}, {"en": "development", "ja": "発展", "example": "Economic development."}, {"en": "disappear", "ja": "消える", "example": "It disappeared."}, {"en": "discover", "ja": "発見する", "example": "I discovered it."}, {"en": "economy", "ja": "経済", "example": "The economy is growing."}, {"en": "education", "ja": "教育", "example": "Education is important."}, {"en": "election", "ja": "選挙", "example": "The election is next month."}, {"en": "employment", "ja": "雇用", "example": "Employment is stable."}, {"en": "encourage", "ja": "励ます", "example": "She encouraged me."}, {"en": "environment", "ja": "環境", "example": "Protect the environment."}, {"en": "especially", "ja": "特に", "example": "I like fruit, especially apples."}, {"en": "experience", "ja": "経験", "example": "This is a good experience."}, {"en": "government", "ja": "政府", "example": "The government decided."}, {"en": "independence", "ja": "独立", "example": "Independence Day."}, {"en": "international", "ja": "国際的な", "example": "International relations."}, {"en": "opportunity", "ja": "機会", "example": "This is a good opportunity."}, {"en": "population", "ja": "人口", "example": "The population is large."}]}};
+const { createApp } = Vue;
+const app = createApp({
+  data() { return { currentGrade: 'g1' }; },
+  computed: {
+    currentWords() { 
+      const words = wordData[this.currentGrade]?.words || [];
+      return words.map(w => ({ ...w, show: false }));
+    }
+  }
+}).mount('#wordApp');
+
+function showGrade(g) {
+  document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`[data-grade="${g}"]`).classList.add('active');
+  app.currentGrade = g;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>助動詞 確認テスト | 中学英語学習サイト</title>
+<meta name="description" content="中学英語 助動詞 の確認テスト">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="../index.html">ホーム</a>
+      <a href="../index.html#grammar">文法解説</a>
+      <a href="../index.html#practice">練習問題</a>
+      <a href="../test/index.html">確認テスト</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html">ホーム</a>
+  <a href="../index.html#grammar">文法解説</a>
+  <a href="../index.html#practice">練習問題</a>
+  <a href="../test/index.html">確認テスト</a>
+  <a href="../word/index.html">英単語帳</a>
+</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="index.html">確認テスト</a> > 助動詞</div>
+<div class="page-header"><h1>助動詞 確認テスト</h1><p>制限時間5分。全10問。</p></div>
+
+<div class="container">
+  <div class="test-header">
+    <div class="timer" id="timerDisplay">05:00</div>
+    <div class="progress" id="progressDisplay">0 / 10 問解答</div>
+  </div>
+  <div class="practice-box" id="testApp">
+    <div class="question-card" v-for="(q, i) in questions" :key="i">
+      <div class="q-number">{{ i + 1 }}</div>
+      <div class="q-text">{{ q.text }}</div>
+      <div class="q-options">
+        <div v-for="opt in q.options" :key="opt"
+          class="q-option"
+          :class="{ ' }} correct: finished && opt === q.answer, wrong: finished && selected[i] === opt && opt !== q.answer {{ ' }"
+          @click="selectAnswer(i, opt)">
+          {{ opt }}
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin:24px 0;">
+      <button class="hero-btn primary" @click="submitTest" :disabled="!allAnswered" style="border:none;cursor:pointer;">📊 採点する</button>
+    </div>
+    <div class="test-result" v-if="finished">
+      <div class="score">{{ score }} / 10</div>
+      <div class="label">正答率 {{ Math.round(score / questions.length * 100) }}%</div>
+      <div class="rank">{{ score === questions.length ? '🎉 満点！' : score >= 7 ? '👍 よくできました！' : '💪 もう一度！' }}</div>
+      <div style="margin-top:16px;">
+        <button class="hero-btn secondary" @click="retry" style="border:none;cursor:pointer;background:var(--gray-600);color:#fff;">🔄 もう一度</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ad-placeholder">広告スペース（AdSense設置予定）</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a></div>
+    <div><h3>英単語</h3><a href="../word/index.html">単語帳</a></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
+</footer>
+</body>
+</html>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const { createApp } = Vue;
+createApp({
+  data() { return {
+    selected: {}, finished: false,
+    timerMinutes: 5, timerSeconds: 0, timerInterval: null, timeUp: false,
+    questions: [{"text": "You ___ study harder.", "options": ["must", "are", "have"], "answer": "must", "explanation": "must + 動詞の原形「〜しなければならない」"}, {"text": "I ___ to go now.", "options": ["must", "have", "has"], "answer": "have", "explanation": "have to + 動詞の原形"}, {"text": "She ___ to wear a uniform.", "options": ["must", "has", "have"], "answer": "has", "explanation": "She には has to"}, {"text": "May I ___ in?", "options": ["come", "came", "coming"], "answer": "come", "explanation": "may + 動詞の原形"}, {"text": "You ___ not run here.", "options": ["must", "have", "are"], "answer": "must", "explanation": "must not = 禁止"}, {"text": "We ___ help each other.", "options": ["should", "are", "have"], "answer": "should", "explanation": "should + 動詞の原形「〜すべきだ」"}, {"text": "You don't ___ to go.", "options": ["must", "have", "has"], "answer": "have", "explanation": "don't have to = 必要ない"}, {"text": "He ___ be careful.", "options": ["must", "has", "have"], "answer": "must", "explanation": "must + 動詞の原形"}, {"text": "___ I use your phone?", "options": ["May", "Must", "Have"], "answer": "May", "explanation": "許可を求める May I ~?"}, {"text": "You ___ not tell anyone.", "options": ["must", "have", "are"], "answer": "must", "explanation": "must not = してはいけない"}]
+  }; },
+  computed: {
+    allAnswered() { return this.questions.every((_, i) => this.selected[i]); },
+    score() { return this.questions.filter((q, i) => this.selected[i] === q.answer).length; }
+  },
+  methods: {
+    selectAnswer(i, opt) { if (this.finished || this.timeUp) return; this.selected[i] = opt; document.getElementById('progressDisplay').textContent = `${{Object.keys(this.selected).length}} / ${{this.questions.length}} 問解答`; },
+    submitTest() { if (!this.allAnswered) return; this.finished = true; if (this.timerInterval) clearInterval(this.timerInterval); },
+    retry() { this.selected = {}; this.finished = false; this.timeUp = false; this.timerMinutes = 5; this.timerSeconds = 0; document.getElementById('timerDisplay').textContent = '05:00'; document.getElementById('progressDisplay').textContent = '0 / 10 問解答'; this.startTimer(); },
+    startTimer() { this.timerInterval = setInterval(() => { if (this.timerSeconds === 0) { if (this.timerMinutes === 0) { clearInterval(this.timerInterval); this.timeUp = true; this.finished = true; return; } this.timerMinutes--; this.timerSeconds = 59; } else { this.timerSeconds--; } document.getElementById('timerDisplay').textContent = `${{String(this.timerMinutes).padStart(2, '0')}}:${{String(this.timerSeconds).padStart(2, '0')}}`; }, 1000); }
+  },
+  mounted() { this.startTimer(); }
+}).mount('#testApp');
+</script>
+</body>
+</html>

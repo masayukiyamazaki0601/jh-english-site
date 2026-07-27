@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学習ダッシュボード | 中学英語学習サイト</title>
+<meta name="description" content="学習の進捗状況を確認できるダッシュボード。学習記録・連続学習日数・テスト結果を表示。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="index.html">ホーム</a>
+      <a href="index.html#grammar">文法解説</a>
+      <a href="listening/index.html">リスニング</a>
+      <a href="test/index.html">確認テスト</a>
+      <a href="dashboard.html" class="active">ダッシュボード</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">ホーム</a>
+  <a href="index.html#grammar">文法解説</a>
+  <a href="index.html#practice">練習問題</a>
+  <a href="test/index.html">確認テスト</a>
+  <a href="dashboard.html">ダッシュボード</a>
+</div>
+
+<div class="breadcrumb" style="max-width:1200px;margin:0 auto;padding:20px;">
+  <a href="index.html">ホーム</a> > 学習ダッシュボード
+</div>
+
+<div class="page-header">
+  <h1>📊 学習ダッシュボード</h1>
+  <p>学習の進捗状況を確認しましょう。データはブラウザに保存されます。</p>
+</div>
+
+<div class="container">
+  <div id="dashboardApp">
+    <!-- 統計カード -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="num">{{ progress.percentage }}%</div>
+        <div class="label">学習達成度</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ progress.completedLessons }} / {{ progress.totalLessons }}</div>
+        <div class="label">修了文法単元</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ progress.streak }} 日</div>
+        <div class="label">連続学習記録</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">{{ quizCount }}</div>
+        <div class="label">受検テスト数</div>
+      </div>
+    </div>
+
+    <!-- 進捗バー -->
+    <div class="question-card">
+      <h3 style="margin-bottom:12px;">📖 文法学習の進捗</h3>
+      <div style="background:var(--gray-200);border-radius:999px;height:24px;overflow:hidden;position:relative;">
+        <div style="background:linear-gradient(90deg,var(--primary),#7c3aed);height:100%;border-radius:999px;transition:width 0.5s;width:{{ progress.percentage }}%;"></div>
+      </div>
+      <p style="text-align:center;margin-top:8px;color:var(--gray-500);font-size:0.85rem;">
+        {{ progress.completedLessons }} / {{ progress.totalLessons }} 単元修了
+      </p>
+    </div>
+
+    <!-- テスト結果 -->
+    <div class="question-card">
+      <h3 style="margin-bottom:12px;">📝 テスト結果一覧</h3>
+      <div v-if="Object.keys(progress.quizScores).length === 0" style="text-align:center;padding:24px;color:var(--gray-400);">
+        まだテストを受けていません。確認テストに挑戦してみましょう！
+      </div>
+      <div v-for="(val, key) in progress.quizScores" :key="key" style="display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid var(--gray-100);">
+        <span style="font-weight:600;">{{ key }}</span>
+        <span>
+          <span style="font-weight:800;color:var(--primary);font-size:1.2rem;">{{ val.score }}</span>
+          <span style="color:var(--gray-500);"> / {{ val.total }}</span>
+          <span style="margin-left:8px;font-size:0.85rem;color:var(--gray-400);">{{ Math.round(val.score / val.total * 100) }}%</span>
+          <span v-if="val.score === val.total" style="margin-left:4px;">🎉</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- 今週の学習目標 -->
+    <div class="question-card">
+      <h3 style="margin-bottom:12px;">🎯 おすすめ学習</h3>
+      <ul style="list-style:none;padding:0;">
+        <li v-for="rec in recommendations" :key="rec.name" style="padding:10px 0;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:8px;">
+          <span>{{ rec.icon }}</span>
+          <a :href="rec.link" style="color:var(--primary);text-decoration:none;font-weight:600;">{{ rec.name }}</a>
+          <span style="color:var(--gray-500);font-size:0.85rem;">{{ rec.reason }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div style="text-align:center;margin:24px 0;">
+      <button class="hero-btn primary" @click="resetProgress" style="border:none;cursor:pointer;background:var(--danger);">🗑️ 学習記録をリセット</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/tracker.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      progress: StudyTracker.getProgress(),
+    };
+  },
+  computed: {
+    quizCount() {
+      return Object.keys(this.progress.quizScores).length;
+    },
+    recommendations() {
+      const recs = [
+        { icon: '📖', name: 'be動詞', link: 'grammar/be.html', reason: '英語の基本' },
+        { icon: '🎯', name: '不定詞', link: 'grammar/futeisi1.html', reason: '最重要文法の1つ' },
+        { icon: '📌', name: '現在完了', link: 'grammar/genkan1.html', reason: '中3の山場' },
+        { icon: '🔗', name: '関係代名詞', link: 'grammar/kankeisi1.html', reason: '入試頻出' },
+        { icon: '📊', name: '比較', link: 'grammar/hikaku1.html', reason: '中2重要単元' },
+      ];
+      const completed = this.progress.completedLessons.map(l => l.id);
+      const available = recs.filter(r => !completed.includes(r.name));
+      return available.length > 0 ? available : [{ icon: '🎉', name: 'おめでとう！', link: 'index.html', reason: 'すべての単元を修了しました！' }];
+    }
+  },
+  methods: {
+    resetProgress() {
+      if (StudyTracker.resetProgress()) {
+        this.progress = StudyTracker.getProgress();
+      }
+    }
+  }
+}).mount('#dashboardApp');
+</script>
+</body>
+</html>

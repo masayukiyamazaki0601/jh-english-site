@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一般動詞 練習問題 | 中学英語学習サイト</title>
+<meta name="description" content="中学英語 一般動詞 の練習問題。全10問の選択式問題で理解度をチェック。解答・解説付き。">
+<meta property="og:title" content="一般動詞 練習問題 | 中学英語学習サイト">
+<meta property="og:description" content="中学英語 一般動詞 の練習問題。全10問の選択式問題で理解度をチェック。解答・解説付き。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="../index.html">ホーム</a>
+      <a href="../index.html#grammar" class="active">文法解説</a>
+      <a href="../practice/index.html">練習問題</a>
+      <a href="../test/index.html">確認テスト</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html">ホーム</a>
+  <a href="../index.html#grammar">文法解説</a>
+  <a href="../practice/index.html">練習問題</a>
+  <a href="../test/index.html">確認テスト</a>
+</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="../practice/index.html">練習問題</a> > 一般動詞</div>
+<div class="page-header"><h1>一般動詞 練習問題</h1><p>全10問。選択肢から正しいものを選んでください。</p></div>
+
+<div class="container">
+  <div class="practice-box" id="practiceApp">
+    <div class="question-card" v-for="(q, i) in questions" :key="i">
+      <div class="q-number">{{ i + 1 }}</div>
+      <div class="q-text">{{ q.text }}</div>
+      <div class="q-options">
+        <div v-for="opt in q.options" :key="opt"
+          class="q-option"
+          :class="{ ' }} correct: answered[i] && opt === q.answer, wrong: answered[i] && selected[i] === opt && opt !== q.answer {{ ' }"
+          @click="selectAnswer(i, opt)">
+          {{ opt }}
+        </div>
+      </div>
+      <div class="feedback" :class="{ ' }} show: answered[i], correct: answered[i] && selected[i] === q.answer, wrong: answered[i] && selected[i] !== q.answer {{ ' }">
+        <template v-if="answered[i] && selected[i] === q.answer">✅ 正解！ {{ q.explanation }}</template>
+        <template v-else-if="answered[i]">❌ 正解は「{{ q.answer }}」 {{ q.explanation }}</template>
+      </div>
+    </div>
+    <div style="text-align:center;margin:24px 0;">
+      <button class="hero-btn primary" @click="resetAll" style="border:none;cursor:pointer;">🔄 やり直す</button>
+    </div>
+    <div class="test-result" v-if="allAnswered">
+      <div class="score">{{ score }} / 10</div>
+      <div class="label">正答率</div>
+      <div class="rank">{{ score === questions.length ? '🎉 満点！' : score >= 7 ? '👍 よくできました！' : '💪 もう一度！' }}</div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a><a href="../practice/kankeisi.html">関係代名詞</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a><a href="../test/kankeisi_test.html">関係代名詞</a></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
+</footer>
+</body>
+</html>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      selected: {},
+      answered: {},
+      questions: [{"text": "I ___ tennis.", "options": ["play", "plays", "playing"], "answer": "play", "explanation": "I には原形 play"}, {"text": "She ___ English.", "options": ["study", "studies", "studying"], "answer": "studies", "explanation": "She (3人称単数) なので studies"}, {"text": "___ you like cats?", "options": ["Do", "Does", "Are"], "answer": "Do", "explanation": "you の疑問文は Do"}, {"text": "He ___ play soccer.", "options": ["don't", "doesn't", "isn't"], "answer": "doesn't", "explanation": "He の否定文は doesn't"}, {"text": "They ___ lunch at school.", "options": ["eat", "eats", "eating"], "answer": "eat", "explanation": "They には原形 eat"}, {"text": "___ he study math?", "options": ["Do", "Does", "Is"], "answer": "Does", "explanation": "he の疑問文は Does"}, {"text": "I ___ get up at six.", "options": ["don't", "doesn't", "isn't"], "answer": "don't", "explanation": "I の否定文は don't"}, {"text": "We ___ to school by bus.", "options": ["go", "goes", "going"], "answer": "go", "explanation": "We には原形 go"}, {"text": "My mother ___ dinner.", "options": ["make", "makes", "making"], "answer": "makes", "explanation": "My mother (3人称単数) なので makes"}, {"text": "___ they live in Tokyo?", "options": ["Do", "Does", "Are"], "answer": "Do", "explanation": "they の疑問文は Do"}]
+    };
+  },
+  computed: {
+    allAnswered() { return this.questions.every((_, i) => this.answered[i]); },
+    score() { return this.questions.filter((q, i) => this.selected[i] === q.answer).length; }
+  },
+  methods: {
+    selectAnswer(i, opt) { if (this.answered[i]) return; this.selected[i] = opt; this.answered[i] = true; },
+    resetAll() { this.selected = {}; this.answered = {}; }
+  }
+}).mount('#practiceApp');
+</script>
+</body>
+</html>

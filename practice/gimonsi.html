@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>疑問詞 練習問題 | 中学英語学習サイト</title>
+<meta name="description" content="中学英語 疑問詞 の練習問題。全10問の選択式問題で理解度をチェック。解答・解説付き。">
+<meta property="og:title" content="疑問詞 練習問題 | 中学英語学習サイト">
+<meta property="og:description" content="中学英語 疑問詞 の練習問題。全10問の選択式問題で理解度をチェック。解答・解説付き。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="../index.html">ホーム</a>
+      <a href="../index.html#grammar" class="active">文法解説</a>
+      <a href="../practice/index.html">練習問題</a>
+      <a href="../test/index.html">確認テスト</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html">ホーム</a>
+  <a href="../index.html#grammar">文法解説</a>
+  <a href="../practice/index.html">練習問題</a>
+  <a href="../test/index.html">確認テスト</a>
+</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > <a href="../practice/index.html">練習問題</a> > 疑問詞</div>
+<div class="page-header"><h1>疑問詞 練習問題</h1><p>全10問。選択肢から正しいものを選んでください。</p></div>
+
+<div class="container">
+  <div class="practice-box" id="practiceApp">
+    <div class="question-card" v-for="(q, i) in questions" :key="i">
+      <div class="q-number">{{ i + 1 }}</div>
+      <div class="q-text">{{ q.text }}</div>
+      <div class="q-options">
+        <div v-for="opt in q.options" :key="opt"
+          class="q-option"
+          :class="{ ' }} correct: answered[i] && opt === q.answer, wrong: answered[i] && selected[i] === opt && opt !== q.answer {{ ' }"
+          @click="selectAnswer(i, opt)">
+          {{ opt }}
+        </div>
+      </div>
+      <div class="feedback" :class="{ ' }} show: answered[i], correct: answered[i] && selected[i] === q.answer, wrong: answered[i] && selected[i] !== q.answer {{ ' }">
+        <template v-if="answered[i] && selected[i] === q.answer">✅ 正解！ {{ q.explanation }}</template>
+        <template v-else-if="answered[i]">❌ 正解は「{{ q.answer }}」 {{ q.explanation }}</template>
+      </div>
+    </div>
+    <div style="text-align:center;margin:24px 0;">
+      <button class="hero-btn primary" @click="resetAll" style="border:none;cursor:pointer;">🔄 やり直す</button>
+    </div>
+    <div class="test-result" v-if="allAnswered">
+      <div class="score">{{ score }} / 10</div>
+      <div class="label">正答率</div>
+      <div class="rank">{{ score === questions.length ? '🎉 満点！' : score >= 7 ? '👍 よくできました！' : '💪 もう一度！' }}</div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a><a href="../practice/kankeisi.html">関係代名詞</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a><a href="../test/kankeisi_test.html">関係代名詞</a></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
+</footer>
+</body>
+</html>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      selected: {},
+      answered: {},
+      questions: [{"text": "___ is this? It's a pen.", "options": ["What", "Who", "Where"], "answer": "What", "explanation": "ものを尋ねる疑問詞は What"}, {"text": "___ is he? He's Taro.", "options": ["What", "Who", "Where"], "answer": "Who", "explanation": "人を尋ねる疑問詞は Who"}, {"text": "___ are you going? To the library.", "options": ["What", "Who", "Where"], "answer": "Where", "explanation": "場所を尋ねる疑問詞は Where"}, {"text": "___ do you get up? At seven.", "options": ["What", "When", "Why"], "answer": "When", "explanation": "時を尋ねる疑問詞は When"}, {"text": "___ are you late? Because I missed the bus.", "options": ["What", "When", "Why"], "answer": "Why", "explanation": "理由を尋ねる疑問詞は Why"}, {"text": "___ old are you? I'm 12.", "options": ["What", "How", "Who"], "answer": "How", "explanation": "How old で年齢を尋ねる"}, {"text": "___ is your birthday? It's May 5th.", "options": ["What", "When", "Where"], "answer": "When", "explanation": "時を尋ねる疑問詞は When"}, {"text": "___ do you go to school? By bus.", "options": ["What", "How", "When"], "answer": "How", "explanation": "方法を尋ねる疑問詞は How"}, {"text": "___ is your favorite subject? English.", "options": ["Who", "What", "Where"], "answer": "What", "explanation": "好きな教科は What"}, {"text": "___ are you from? I'm from Japan.", "options": ["What", "Where", "Who"], "answer": "Where", "explanation": "出身地を尋ねる疑問詞は Where"}]
+    };
+  },
+  computed: {
+    allAnswered() { return this.questions.every((_, i) => this.answered[i]); },
+    score() { return this.questions.filter((q, i) => this.selected[i] === q.answer).length; }
+  },
+  methods: {
+    selectAnswer(i, opt) { if (this.answered[i]) return; this.selected[i] = opt; this.answered[i] = true; },
+    resetAll() { this.selected = {}; this.answered = {}; }
+  }
+}).mount('#practiceApp');
+</script>
+</body>
+</html>

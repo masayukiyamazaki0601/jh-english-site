@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英作文練習 | 中学英語学習サイト</title>
+<meta name="description" content="中学英語の英作文練習。テーマに沿って英文を作成しよう。">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="../index.html">ホーム</a>
+      <a href="../index.html#grammar">文法解説</a>
+      <a href="../listening/index.html">リスニング</a>
+      <a href="../test/index.html">確認テスト</a>
+      <a href="../word/index.html">単語帳</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html">ホーム</a>
+  <a href="../index.html#grammar">文法解説</a>
+  <a href="../index.html#practice">練習問題</a>
+  <a href="../listening/index.html">リスニング練習</a>
+  <a href="../test/index.html">確認テスト</a>
+  <a href="../word/index.html">英単語帳</a>
+  <a href="../verb/index.html">不規則動詞一覧</a>
+  <a href="../exam/index.html">高校入試対策</a>
+  <a href="../writing/index.html">英作文練習</a>
+  <a href="../search.html">サイト内検索</a>
+  <a href="../sitemap.html">サイトマップ</a>
+</div><div class="breadcrumb"><a href="../index.html">ホーム</a> > 英作文練習</div>
+<div class="page-header">
+  <h1>✍️ 英作文練習</h1>
+  <p>テーマに沿って英文を作成しましょう。ヒントとキーワードを参考に。</p>
+</div>
+<div class="container">
+  <div id="writingApp">
+    <div class="question-card" v-for="(topic, i) in topics" :key="i">
+      <div class="q-number">{{ i + 1 }}</div>
+      <div class="q-text" style="font-size:1.1rem;font-weight:700;">{{ topic.ja }}</div>
+      <div class="note" style="margin:12px 0;">
+        <strong>💡 ヒント: </strong>{{ topic.hint }}<br>
+        <strong>🔑 キーワード: </strong>{{ topic.keywords }}
+      </div>
+      <textarea class="q-input" rows="4" v-model="topic.answer" placeholder="ここに英文を書いてみよう..." style="resize:vertical;"></textarea>
+      <div style="margin-top:8px;text-align:right;color:var(--gray-500);font-size:0.85rem;">
+        文字数: {{ topic.answer.length }}
+      </div>
+    </div>
+    <div style="text-align:center;margin:24px 0;">
+      <button class="hero-btn primary" @click="clearAll" style="border:none;cursor:pointer;">🔄 すべてクリア</button>
+    </div>
+  </div>
+</div>
+<div class="ad-placeholder">広告スペース（AdSense設置予定）</div><footer class="footer">
+  <div class="footer-inner">
+    <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。英文法・練習問題・確認テストで英語力を確実にアップ。</p></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>練習問題</h3><a href="../practice/be.html">be動詞</a><a href="../practice/futeisi.html">不定詞</a><a href="../practice/genkan.html">現在完了</a></div>
+    <div><h3>確認テスト</h3><a href="../test/be_test.html">be動詞</a><a href="../test/futeisi_test.html">不定詞</a><a href="../test/genkan_test.html">現在完了</a></div>
+    <div><h3>その他</h3><a href="../listening/index.html">リスニング</a><a href="../writing/index.html">英作文</a><a href="../word/index.html">単語帳</a><a href="../verb/index.html">不規則動詞</a><a href="../exam/index.html">入試対策</a><a href="../privacy.html">プライバシーポリシー</a><a href="../contact.html">お問い合わせ</a></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
+</footer>
+</body>
+</html>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      topics: [{"ja": "あなたの趣味について教えてください", "hint": "I like ~ / My hobby is ~", "keywords": "like, enjoy, play, read", "answer": ""}, {"ja": "あなたの学校について説明してください", "hint": "My school is ~ / There are ~", "keywords": "school, teacher, student, building", "answer": ""}, {"ja": "あなたの家族を紹介してください", "hint": "I have ~ / My father is ~", "keywords": "father, mother, brother, sister", "answer": ""}, {"ja": "昨日したことについて書いてください", "hint": "I went to ~ / I ate ~ / I played ~", "keywords": "yesterday, went, ate, played, watched", "answer": ""}, {"ja": "あなたの町の好きなところ", "hint": "There is/are ~ / I like ~ because", "keywords": "park, shop, station, river, mountain", "answer": ""}, {"ja": "将来の夢について教えてください", "hint": "I want to be ~ / I want to ~", "keywords": "doctor, teacher, singer, pilot", "answer": ""}, {"ja": "環境のためにできること", "hint": "We should ~ / It is important to ~", "keywords": "recycle, save, energy, water", "answer": ""}, {"ja": "好きな季節とその理由", "hint": "I like ~ because ~", "keywords": "spring, summer, autumn, winter, weather", "answer": ""}, {"ja": "休みの日にしたいこと", "hint": "I want to ~ / I am going to ~", "keywords": "visit, play, go, see, eat", "answer": ""}, {"ja": "大切にしているもの", "hint": "My ~ is important because ~", "keywords": "gift, book, photo, friend, family", "answer": ""}]
+    };
+  },
+  methods: {
+    clearAll() {
+      this.topics.forEach(t => t.answer = "");
+    }
+  }
+}).mount('#writingApp');
+</script>
+</body>
+</html>

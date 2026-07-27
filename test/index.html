@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認テスト一覧 | 中学英語学習サイト</title>
+<meta name="description" content="中学英語の確認テスト一覧。be動詞から仮定法まで全34単元、各10問の制限時間付きテストで実力をチェック。">
+<meta property="og:title" content="確認テスト一覧 | 中学英語学習サイト">
+<meta property="og:description" content="中学英語の確認テスト一覧。be動詞から仮定法まで全34単元の実力チェックができます。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="header-logo">📚 中学英語<span>Lab</span></a>
+    <nav class="header-nav">
+      <a href="../index.html">ホーム</a>
+      <a href="../index.html#grammar">文法解説</a>
+      <a href="../index.html#practice">練習問題</a>
+      <a href="index.html" class="active">確認テスト</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html">ホーム</a>
+  <a href="../index.html#grammar">文法解説</a>
+  <a href="../index.html#practice">練習問題</a>
+  <a href="index.html">確認テスト</a>
+</div>
+
+<div class="page-header">
+  <h1>📝 確認テスト一覧</h1>
+  <p>各単元の理解度をチェック。制限時間付きの本格テスト。全問解答後にスコア表示。</p>
+</div>
+
+<div class="container">
+  <div class="grade-tabs">
+    <button class="grade-tab active" data-grade="all" onclick="filterTest('all')">すべて</button>
+    <button class="grade-tab" data-grade="g1" onclick="filterTest('g1')">中学1年</button>
+    <button class="grade-tab" data-grade="g2" onclick="filterTest('g2')">中学2年</button>
+    <button class="grade-tab" data-grade="g3" onclick="filterTest('g3')">中学3年</button>
+  </div>
+
+  <div class="grammar-grid" id="testGrid">
+    <!-- 中1 -->
+    <a href="be_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">✅</span>
+      <h3>be動詞 テスト</h3>
+      <p>am, are, is の使い分け。肯定文・否定文・疑問文。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="ippan_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">🏃</span>
+      <h3>一般動詞 テスト</h3>
+      <p>一般動詞の肯定文・否定文・疑問文。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="gimonhitei_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">❓</span>
+      <h3>疑問文・否定文 テスト</h3>
+      <p>be動詞と一般動詞の疑問文・否定文の違い。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="gimonsi_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">🤔</span>
+      <h3>疑問詞 テスト</h3>
+      <p>what, who, where, when, why, how の使い分け。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="santan_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">👤</span>
+      <h3>三人称単数現在 テスト</h3>
+      <p>三単現のs の付け方、疑問文・否定文。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="shinko_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">🔄</span>
+      <h3>現在進行形 テスト</h3>
+      <p>be動詞 + ing形。否定文・疑問文・ing形の作り方。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="can_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">💪</span>
+      <h3>can テスト</h3>
+      <p>canの肯定文・否定文・疑問文。can + 動詞の原形。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="kako_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">⏪</span>
+      <h3>過去形 テスト</h3>
+      <p>一般動詞の過去形。規則動詞・不規則動詞・did/didn't。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="meirei_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">❗</span>
+      <h3>命令文 テスト</h3>
+      <p>命令文・禁止文（Don't）。動詞の原形で始める。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="fukusu_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">🔢</span>
+      <h3>複数形 テスト</h3>
+      <p>名詞の複数形のルール。不規則変化も。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="daimeisi_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">👥</span>
+      <h3>代名詞 テスト</h3>
+      <p>I, my, me, mine など人称代名詞の変化。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="kansi_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">📛</span>
+      <h3>冠詞 テスト</h3>
+      <p>a, an, the の使い分け。無冠詞のルール。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <a href="suryo_test.html" class="grammar-card" data-grade="g1">
+      <span class="icon">🔢</span>
+      <h3>数量表現 テスト</h3>
+      <p>many/much, some/any, a few/a little の使い分け。</p>
+      <span class="badge g1">中学1年</span>
+    </a>
+    <!-- 中2 -->
+    <a href="futeisi_test.html" class="grammar-card" data-grade="g2">
+      <span class="icon">🎯</span>
+      <h3>不定詞 テスト</h3>
+      <p>不定詞の3用法。名詞・副詞・形容詞的用法。</p>
+      <span class="badge g2">中学2年</span>
+    </a>
+    <a href="hikaku_test.html" class="grammar-card" data-grade="g2">
+      <span class="icon">📊</span>
+      <h3>比較 テスト</h3>
+      <p>比較級・最上級・原級の使い分け。</p>
+      <span class="badge g2">中学2年</span>
+    </a>
+    <a href="zensi_test.html" class="grammar-card" data-grade="g2">
+      <span class="icon">📍</span>
+      <h3>前置詞 テスト</h3>
+      <p>in, on, at など位置・時間・方向の前置詞。</p>
+      <span class="badge g2">中学2年</span>
+    </a>
+    <!-- 中3 -->
+    <a href="genkan_test.html" class="grammar-card" data-grade="g3">
+      <span class="icon">📌</span>
+      <h3>現在完了 テスト</h3>
+      <p>継続・経験・完了・結果の3用法。</p>
+      <span class="badge g3">中学3年</span>
+    </a>
+    <a href="kankeisi_test.html" class="grammar-card" data-grade="g3">
+      <span class="icon">🔗</span>
+      <h3>関係代名詞 テスト</h3>
+      <p>who, which, that の使い分け。</p>
+      <span class="badge g3">中学3年</span>
+    </a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><h3>📚 中学英語Lab</h3><p style="font-size:0.85rem;">中学生のための無料英語学習サイト。</p></div>
+    <div><h3>文法解説</h3><a href="../grammar/be.html">be動詞</a><a href="../grammar/futeisi1.html">不定詞</a><a href="../grammar/genkan1.html">現在完了</a><a href="../grammar/kankeisi1.html">関係代名詞</a></div>
+    <div><h3>確認テスト</h3><a href="be_test.html">be動詞</a><a href="futeisi_test.html">不定詞</a><a href="genkan_test.html">現在完了</a><a href="kankeisi_test.html">関係代名詞</a></div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 中学英語Lab</div>
+</footer>
+
+<script>
+function filterTest(grade) {
+  document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`[data-grade="${grade}"]`).classList.add('active');
+  document.querySelectorAll('.grammar-card').forEach(card => {
+    if (grade === 'all') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = card.dataset.grade === grade ? 'block' : 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
